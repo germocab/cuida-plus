@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adriana — Cuidado de Adultos Mayores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sage: #4a8c6f;
+    --sage-light: #e8f4ef;
+    --sage-mid: #c4ddd3;
+    --sky: #3a7cb8;
+    --sky-light: #e6f0f9;
+    --sky-mid: #bdd4ec;
+    --cream: #faf8f5;
+    --warm-white: #ffffff;
+    --text-dark: #1a2b22;
+    --text-mid: #3d5248;
+    --text-light: #6b8377;
+    --border: #d8e8e2;
+    --shadow-soft: 0 4px 24px rgba(74,140,111,0.10);
+    --shadow-card: 0 2px 16px rgba(26,43,34,0.08);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'DM Serif Display', serif;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--sage);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .nav-logo span.dot {
+    width: 8px; height: 8px;
+    background: var(--sage);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--sage); }
+
+  .nav-cta {
+    background: var(--sage);
+    color: white !important;
+    padding: 9px 20px;
+    border-radius: 50px;
+    font-weight: 500 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #3a7259 !important; transform: translateY(-1px); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 68px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hero-text {
+    padding: 80px 5% 80px 8%;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--sage-light);
+    color: var(--sage);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--sage);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    color: var(--text-dark);
+    margin-bottom: 22px;
+    max-width: 520px;
+  }
+
+  .hero h1 em {
+    color: var(--sage);
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    max-width: 460px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--sage);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(74,140,111,0.3);
+  }
+
+  .btn-primary:hover {
+    background: #3a7259;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(74,140,111,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--sky);
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 2px solid var(--sky-mid);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--sky-light);
+    border-color: var(--sky);
+  }
+
+  .hero-image {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .hero-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--cream) 0%, transparent 15%);
+  }
+
+  .trust-strip {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    margin-top: 52px; padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-light);
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .trust-icon {
+    width: 36px; height: 36px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    padding: 100px 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--warm-white);
+  }
+
+  .about-image {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+  }
+
+  .about-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .about-image .accent-card {
+    position: absolute;
+    bottom: 24px; right: -20px;
+    background: var(--sage);
+    color: white;
+    padding: 18px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    max-width: 200px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .about-image .accent-card strong {
+    display: block;
+    font-size: 1.6rem;
+    font-family: 'DM Serif Display', serif;
+    margin-bottom: 4px;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+
+  .about-text h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--text-dark);
+    margin-bottom: 22px;
+  }
+
+  .about-text p {
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+
+  .values-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 12px;
+    margin-top: 32px;
+  }
+
+  .values-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+  }
+
+  .values-list li::before {
+    content: '✓';
+    background: var(--sage-light);
+    color: var(--sage);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services {
+    padding: 100px 8%;
+    background: var(--cream);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 64px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+
+  .section-header p {
+    color: var(--text-mid);
+    font-weight: 300;
+    font-size: 1.02rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    padding: 36px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--sky));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .service-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: var(--sage-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 22px;
+  }
+
+  .service-card:nth-child(2) .service-icon,
+  .service-card:nth-child(4) .service-icon {
+    background: var(--sky-light);
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+
+  .service-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery {
+    padding: 80px 0;
+    background: var(--warm-white);
+    overflow: hidden;
+  }
+
+  .gallery-inner {
+    padding: 0 8%;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .gallery-item {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery-item:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.04);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    padding: 100px 8%;
+    background: var(--sage-light);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .testimonial-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .stars {
+    color: #f4a838;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-card blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--sage-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--sage);
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+  }
+
+  .author-rel {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    padding: 100px 8%;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--text-dark);
+    margin-bottom: 20px;
+  }
+
+  .contact-info p {
+    color: var(--text-mid);
+    font-weight: 300;
+    font-size: 1.02rem;
+    margin-bottom: 40px;
+    line-height: 1.85;
+  }
+
+  .contact-methods {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  .contact-method {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--warm-white);
+    padding: 18px 22px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .contact-method:hover {
+    border-color: var(--sage-mid);
+    box-shadow: var(--shadow-card);
+    transform: translateX(4px);
+  }
+
+  .contact-method-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .contact-method-icon.phone { background: var(--sky-light); }
+  .contact-method-icon.email { background: var(--sage-light); }
+  .contact-method-icon.whatsapp { background: #e8f8ef; }
+
+  .contact-method-text strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
+  }
+
+  .contact-method-text span {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 400;
+  }
+
+  /* ─── CHAT WIDGET ─── */
+  .chat-widget-area {
+    background: var(--warm-white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    display: flex; flex-direction: column;
+  }
+
+  .chat-header {
+    background: linear-gradient(135deg, var(--sage) 0%, #3a7259 100%);
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 14px;
+  }
+
+  .chat-header-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+
+  .chat-header-info strong {
+    display: block;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .chat-header-info small {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .online-dot {
+    width: 7px; height: 7px;
+    background: #7bde9e;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .chat-messages {
+    padding: 20px 20px 12px;
+    min-height: 200px;
+    max-height: 280px;
+    overflow-y: auto;
+    display: flex; flex-direction: column; gap: 14px;
+    background: var(--cream);
+  }
+
+  .chat-bubble {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .chat-bubble.from-support {
+    background: white;
+    color: var(--text-dark);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+  }
+
+  .chat-bubble.from-user {
+    background: var(--sage);
+    color: white;
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+
+  .chat-time {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .chat-input-row {
+    display: flex; gap: 8px;
+    padding: 14px 16px;
+    border-top: 1px solid var(--border);
+    background: white;
+  }
+
+  .chat-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 10px 18px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    color: var(--text-dark);
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+
+  .chat-input:focus {
+    border-color: var(--sage);
+  }
+
+  .chat-send {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--sage);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .chat-send:hover {
+    background: #3a7259;
+    transform: scale(1.05);
+  }
+
+  .chat-disclaimer {
+    padding: 10px 16px;
+    background: var(--sage-light);
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.65);
+    padding: 48px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: white;
+  }
+
+  footer p {
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: white; }
+
+  /* ─── FLOATING CHAT BUTTON ─── */
+  .float-chat {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 200;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+
+  .float-chat-tooltip {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+    transition: all 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .float-chat:hover .float-chat-tooltip {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .float-chat-btn {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage), #3a7259);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(74,140,111,0.40);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .float-chat-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 10px 30px rgba(74,140,111,0.45);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── MOBILE NAV ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+    background: var(--cream);
+    padding: 20px 8% 28px;
+    border-bottom: 1px solid var(--border);
+    flex-direction: column; gap: 12px;
+    animation: slideDown 0.25s ease;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .hero-text {
+      padding: 60px 6% 40px;
+      order: 2;
+    }
+
+    .hero-image {
+      height: 55vw;
+      order: 1;
+    }
+
+    .hero-image::after {
+      background: linear-gradient(to bottom, var(--cream) 0%, transparent 20%);
+    }
+
+    .about {
+      grid-template-columns: 1fr;
+      padding: 70px 6%;
+      gap: 48px;
+    }
+
+    .about-image .accent-card {
+      right: 12px;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
+    .gallery-item:first-child {
+      grid-column: 1 / 3;
+      grid-row: auto;
+      aspect-ratio: 16/7;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact {
+      grid-template-columns: 1fr;
+      padding: 70px 6%;
+      gap: 48px;
+    }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .trust-strip {
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: auto; aspect-ratio: 4/3; }
+    .services { padding: 70px 5%; }
+    .testimonials { padding: 70px 5%; }
+    .about { padding: 60px 5%; }
+    .contact { padding: 60px 5%; }
+    nav { padding: 0 4%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="dot"></span>
+    Adriana Vergara
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#testimonials">Testimonios</a></li>
+    <li><a href="#contact" class="nav-cta">Contáctame</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">Sobre mí</a>
+  <a href="#services" onclick="closeMenu()">Servicios</a>
+  <a href="#testimonials" onclick="closeMenu()">Testimonios</a>
+  <a href="#contact" onclick="closeMenu()">Contáctame</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-badge">Activamente cuidando</span>
+    <h1>Cuidado compasivo para quienes <em>merecen lo mejor</em></h1>
+    <p>Servicios profesionales, cálidos y de confianza para adultos mayores — diseñados para dar tranquilidad a las familias y dignidad a cada persona que atiendo.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        💬 Contáctame
+      </a>
+      <a href="#services" class="btn-secondary">
+        Mis servicios →
+      </a>
+    </div>
+    <div class="trust-strip">
+      <div class="trust-item">
+        <div class="trust-icon">🏅</div>
+        <span>Más de 15 años de experiencia</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">💚</div>
+        <span>Planes de cuidado personalizados</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📞</div>
+        <span>Siempre disponible</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80&auto=format&fit=crop" alt="Caring professional with elderly person" />
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image fade-up">
+    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80&auto=format&fit=crop" alt="Adriana sonriendo con una persona mayor" />
+    <div class="accent-card">
+      <strong>200+</strong>
+      Familias que han confiado en mi cuidado
+    </div>
+  </div>
+  <div class="about-text fade-up">
+    <p class="section-label">Sobre mí</p>
+    <h2>Un cuidado que se siente como familia</h2>
+    <p>Me llamo Adriana, y desde hace más de quince años me he dedicado a brindar cuidado excepcional a adultos mayores. Creo firmemente que toda persona — sin importar su edad o condición — merece vivir con dignidad, bienestar y alegría.</p>
+    <p>Cada plan de cuidado que diseño está adaptado a las necesidades y preferencias únicas de cada persona. Trabajo de cerca con las familias para garantizar total transparencia y tranquilidad en todo momento.</p>
+    <ul class="values-list">
+      <li>Trato respetuoso y digno en todas las circunstancias</li>
+      <li>Comunicación abierta y continua con las familias</li>
+      <li>Formación certificada, antecedentes verificados y seguro vigente</li>
+      <li>Horarios flexibles — medio tiempo, tiempo completo o residencia</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header fade-up">
+    <p class="section-label">Lo que ofrezco</p>
+    <h2>Servicios adaptados a cada etapa de la vida</h2>
+    <p>Desde compañía y apoyo cotidiano hasta atención especializada, estoy aquí para ayudar con lo que más importa.</p>
+  </div>
+    <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">🤝</div>
+      <h3>Compañía y apoyo diario</h3>
+      <p>Conversación significativa, actividades recreativas, diligencias, preparación de comidas y recordatorio de medicamentos — para que el adulto mayor se mantenga activo e independiente.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">❤️‍🩹</div>
+      <h3>Seguimiento médico y de salud</h3>
+      <p>Control de signos vitales, manejo de medicamentos, coordinación de citas y seguimiento continuo de salud — con actualizaciones claras a la familia y comunicación proactiva.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🛁</div>
+      <h3>Movilidad e higiene personal</h3>
+      <p>Asistencia respetuosa y cuidadosa con el baño, el vestido, el aseo y el apoyo a la movilidad — preservando la independencia y garantizando la seguridad y el bienestar en todo momento.</p>
+    </div>
+    <div class="service-card fade-up" style="background: var(--sage-light); border-color: var(--sage-mid);">
+      <div class="service-icon" style="background: white;">🗓️</div>
+      <h3>Horarios a tu medida</h3>
+      <p>Cada familia es distinta. Los horarios, la frecuencia y las rutinas siempre se conversan juntos primero — para que el plan de cuidado se adapte a la vida de tu ser querido, y no al revés.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <div class="section-header fade-up" style="text-align:left; margin: 0 0 0 0;">
+      <p class="section-label">Una mirada al cuidado diario</p>
+      <h2>Los momentos que importan</h2>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=700&q=80&auto=format&fit=crop" alt="Cuidadora leyendo con adulta mayor" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500&q=80&auto=format&fit=crop" alt="Adulto mayor haciendo ejercicio" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=500&q=80&auto=format&fit=crop" alt="Cuidadora apoyando a adulto mayor" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=500&q=80&auto=format&fit=crop" alt="Pareja de adultos mayores en el jardín" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&q=80&auto=format&fit=crop" alt="Profesional de salud con paciente" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header fade-up">
+    <p class="section-label">Testimonios</p>
+    <h2>Lo que dicen las familias</h2>
+    <p>La confianza se gana con hechos. Estas son las palabras de las familias a las que tengo el honor de acompañar.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Adriana cambió verdaderamente la calidad de vida de mi papá. Él espera sus visitas con entusiasmo — lo trata con calidez y un respeto genuino."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">S</div>
+        <div>
+          <div class="author-name">Sofía R.</div>
+          <div class="author-rel">Hija de paciente</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="stars">★★★★★</div>
+      <blockquote>"La tranquilidad que nos da a toda la familia no tiene precio. Siempre sabemos exactamente qué está pasando y sentimos plena confianza en su cuidado."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">L</div>
+        <div>
+          <div class="author-name">Lucas M.</div>
+          <div class="author-rel">Hijo de paciente</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Profesional, cariñosa e increíblemente confiable. Nuestra mamá está en las mejores manos — no podríamos imaginar a nadie mejor para su bienestar diario."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Ana &amp; Carlos V.</div>
+          <div class="author-rel">Hijos de paciente</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info fade-up">
+    <p class="section-label">Contáctame</p>
+    <h2>Conversemos sobre el cuidado que necesitas</h2>
+    <p>Cada familia es diferente. Escríbeme o llámame por el canal que te sea más cómodo — yo respondo personalmente cada mensaje y llamada.</p>
+    <div class="contact-methods">
+      <a href="tel:59154071" class="contact-method">
+        <div class="contact-method-icon phone">📞</div>
+        <div class="contact-method-text">
+          <strong>Llamada telefónica</strong>
+          <span>5915-4071</span>
+        </div>
+      </a>
+      <a href="mailto:kendeslascondes@gmail.com" class="contact-method">
+        <div class="contact-method-icon email">✉️</div>
+        <div class="contact-method-text">
+          <strong>Correo electrónico</strong>
+          <span>kendeslascondes@gmail.com</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CHAT WIDGET -->
+  <div class="chat-widget-area fade-up">
+    <div class="chat-header">
+      <div class="chat-header-avatar">👩‍⚕️</div>
+      <div class="chat-header-info">
+        <strong>Adriana — Cuidado de Adultos Mayores</strong>
+        <small><span class="online-dot"></span> Responde normalmente en menos de una hora</small>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div>
+        <div class="chat-bubble from-support">
+          ¡Hola! 👋 Gracias por visitar mi sitio. ¿En qué puedo ayudarte a ti o a tu familia hoy?
+        </div>
+        <span class="chat-time">Adriana · ahora</span>
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <input
+        type="text"
+        class="chat-input"
+        id="chatInput"
+        placeholder="Escribe tu mensaje…"
+        onkeydown="if(event.key==='Enter') sendMessage()"
+      />
+      <button class="chat-send" onclick="sendMessage()" aria-label="Enviar mensaje">➤</button>
+    </div>
+    <div class="chat-disclaimer">
+      🔒 Tus mensajes son privados y los gestiona personalmente Adriana.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Adriana</div>
+  <p>© 2025 Adriana — Cuidado de Adultos Mayores. Todos los derechos reservados.</p>
+  <p>
+    <a href="tel:59154071">5915-4071</a> &nbsp;·&nbsp;
+    <a href="/cdn-cgi/l/email-protection#cda6a8a3a9a8bea1acbeaea2a3a9a8be8daaa0aca4a1e3aea2a0"><span class="__cf_email__" data-cfemail="49222c272d2c3a25283a2a26272d2c3a092e24282025672a2624">[email&#160;protected]</span></a>
+  </p>
+</footer>
+
+<!-- FLOATING CHAT BUTTON -->
+<div class="float-chat">
+  <div class="float-chat-tooltip">Chatea con Adriana 💬</div>
+  <button class="float-chat-btn" onclick="scrollToChat()" aria-label="Abrir chat">💬</button>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // ── SCROLL TO CHAT ──
+  function scrollToChat() {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('chatInput').focus(), 600);
+  }
+
+  // ── CHAT WIDGET ──
+  const responses = [
+    "¡Gracias por escribirme! Me encantaría saber más sobre las necesidades de tu familia. ¿Me puedes contar un poco sobre la persona que necesita cuidado?",
+    "Lo entiendo perfectamente. Ofrezco horarios flexibles — siempre conversamos juntos la mejor alternativa primero. ¿Te gustaría agendar una llamada de consulta sin costo?",
+    "¡Estoy aquí para ayudarte! El mejor paso suele ser una llamada corta para entender tu situación. Puedes llamarme al 5915-4071 o escribirme a kendeslascondes@gmail.com. 😊",
+    "Cada familia es diferente, y siempre elaboro un plan de cuidado personalizado. Ninguna pregunta es demasiado pequeña — con gusto respondo todo lo que necesites saber."
+  ];
+  let responseIndex = 0;
+
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const messages = document.getElementById('chatMessages');
+    const text = input.value.trim();
+    if (!text) return;
+
+    // User bubble
+    const userDiv = document.createElement('div');
+    userDiv.style.textAlign = 'right';
+    userDiv.innerHTML = `<div class="chat-bubble from-user">${escapeHtml(text)}</div><span class="chat-time" style="text-align:right;display:block">Tú · ahora</span>`;
+    messages.appendChild(userDiv);
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Typing indicator
+    setTimeout(() => {
+      const typing = document.createElement('div');
+      typing.id = 'typing';
+      typing.innerHTML = `<div class="chat-bubble from-support" style="letter-spacing:3px; color: var(--text-light)">•••</div>`;
+      messages.appendChild(typing);
+      messages.scrollTop = messages.scrollHeight;
+
+      // Response
+      setTimeout(() => {
+        const t = document.getElementById('typing');
+        if (t) t.remove();
+        const reply = responses[responseIndex % responses.length];
+        responseIndex++;
+        const replyDiv = document.createElement('div');
+        replyDiv.innerHTML = `<div class="chat-bubble from-support">${reply}</div><span class="chat-time">Margaret · just now</span>`;
+        messages.appendChild(replyDiv);
+        messages.scrollTop = messages.scrollHeight;
+      }, 1400);
+    }, 600);
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')
